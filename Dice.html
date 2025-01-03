@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주사위 UI</title>
+    <style>
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: #f0f0f0;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    user-select: none;
+}
+
+        .dice-container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            perspective: 500px;
+            border: 1px solid #000;
+        }
+        .dice {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            transform-style: preserve-3d;
+            animation: roll 10s infinite;
+        }
+        .face {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: white;
+            border: 2px solid #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        .face:nth-child(1) { transform: rotateY(0deg) translateZ(50px); }  /* Front */
+        .face:nth-child(2) { transform: rotateY(90deg) translateZ(50px); } /* Right */
+        .face:nth-child(3) { transform: rotateY(180deg) translateZ(50px); } /* Back */
+        .face:nth-child(4) { transform: rotateY(-90deg) translateZ(50px); } /* Left */
+        .face:nth-child(5) { transform: rotateX(90deg) translateZ(50px); }  /* Top */
+        .face:nth-child(6) { transform: rotateX(-90deg) translateZ(50px); } /* Bottom */
+
+        @keyframes roll {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            25% { transform: rotateX(90deg) rotateY(90deg); }
+            50% { transform: rotateX(180deg) rotateY(180deg); }
+            75% { transform: rotateX(270deg) rotateY(270deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+    </style> 
+</head>
+<body>
+    <div class="dice-container">
+        <div class="dice">
+            <div class="face">1</div>
+            <div class="face">2</div>
+            <div class="face">3</div>
+            <div class="face">4</div>
+            <div class="face">5</div>
+            <div class="face">6</div>
+        </div>
+    </div>
+</body>
+</html>
+
+

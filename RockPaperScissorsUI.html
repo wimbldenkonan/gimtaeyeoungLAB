@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가위 바위 보</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .rps {
+            font-size: 48px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="rps" class="rps">가위</div>
+        <button id="stop-button">멈추기</button>
+    </div>
+
+    <script>
+        // HTML 요소 가져오기
+        const rpsElement = document.getElementById('rps');
+        const stopButton = document.getElementById('stop-button');
+
+        // 가위 바위 보 배열
+        const choices = ['가위', '바위', '보'];
+
+        // 상태 관리 변수
+        let animationInterval;
+        let isRunning = true;
+
+        // 애니메이션 시작 함수
+        function startAnimation() {
+            let index = 0;
+            animationInterval = setInterval(() => {
+                rpsElement.textContent = choices[index];
+                index = (index + 1) % choices.length;
+            }, 500); // 500ms마다 변경
+        }
+
+        // 애니메이션 멈추기 함수
+        function stopAnimation() {
+            if (isRunning) {
+                clearInterval(animationInterval);
+                isRunning = false;
+                stopButton.textContent = '다시 시작';
+            } else {
+                startAnimation();
+                isRunning = true;
+                stopButton.textContent = '멈추기';
+            }
+        }
+
+        // 버튼 클릭 이벤트
+        stopButton.addEventListener('click', stopAnimation);
+
+        // 애니메이션 초기 시작
+        startAnimation();
+    </script>
+</body>
+</html>
+
